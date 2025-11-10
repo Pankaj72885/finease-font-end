@@ -1,5 +1,7 @@
+import { reportsAPI } from "@/lib/api";
+import { queryKeys } from "@/lib/queryKeys";
 import { useQuery } from "@tanstack/react-query";
-import { reportsAPI, queryKeys } from "../lib/api";
+
 
 export const useReports = (userEmail) => {
   const { data: summary, isLoading: summaryLoading } = useQuery({
