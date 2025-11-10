@@ -1,8 +1,9 @@
-import ErrorPage from "@/Components/Common/ErrorPage";
-import Loader from "@/Components/Common/Loader";
+import ErrorPage from "@/components/Common/ErrorPage";
+import Loader from "@/components/Common/Loader";
 import Home from "@/Pages/Home";
 import { createBrowserRouter } from "react-router";
 import Root from "./Root";
+import Login from "@/Pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         Component: Home,
+      },
+      {
+        path: "/login",
+        Component: Login,
       },
     ],
   },
