@@ -1,23 +1,52 @@
 import { auth } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
-// Generic fetch wrapper for TanStack Query
+/**
+ * A promise that resolves with the current auth user object
+ * once Firebase has initialized.
+ */
+const getAuthUser = () => {
+  return new Promise((resolve, reject) => {
+    // onAuthStateChanged returns an unsubscribe function
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (user) => {
+        unsubscribe(); // Unsubscribe to prevent memory leaks
+        resolve(user); // Resolve with the user (or null)
+      },
+      reject
+    ); // Reject if there's an init error
+  });
+};
 
+// Generic fetch wrapper for TanStack Query
 export const apiRequest = async (endpoint, options = {}) => {
+
+  const user = await getAuthUser();
+
   let token = null;
-  if (auth.currentUser) {
+  if (user) {
+
     try {
-      token = await auth.currentUser.getIdToken();
+      token = await user.getIdToken();
     } catch (error) {
       console.error("Error getting auth token:", error);
     }
   }
 
+
+  if (!token) {
+    // This will be caught by React Router's error boundary
+    throw new Error("No token provided");
+  }
+
   const config = {
     headers: {
       "Content-Type": "application/json",
-      ...(token && { Authorization: `Bearer ${token}` }),
+
+      Authorization: `Bearer ${token}`,
     },
     ...options,
   };
@@ -86,4 +115,19 @@ export const reportsAPI = {
 
   getMonthlyData: (userEmail, year) =>
     apiRequest(`/reports/monthly?userEmail=${userEmail}&year=${year}`),
+};
+
+
+// Query Keys for TanStack Query
+export const queryKeys = {
+  // Key for the list of all transactions for a user
+  transactionsByUser: (userEmail, sortBy, sortOrder) => [
+    "transactions",
+    userEmail,
+    sortBy,
+    sortOrder,
+  ],
+
+  // Key for a single transaction's details
+  transactionById: (id) => ["transaction", id],
 };

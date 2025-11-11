@@ -1,8 +1,11 @@
+import AddTransaction from "@/Pages/AddTransaction";
+import MyTransactions from "@/Pages/MyTransactions";
+import TransactionDetails from "@/Pages/TransactionDetails";
 import Loader from "@/components/Common/Loader";
+import PrivateRoute from "@/components/Layout/PrivateRoute";
 import { createBrowserRouter } from "react-router";
 import Root from "./Root";
-import MyTransactions from "@/Pages/MyTransactions";
-import AddTransaction from "@/Pages/AddTransaction";
+import UpdateTransaction from "@/Pages/UpdateTransaction";
 
 const router = createBrowserRouter([
   {
@@ -25,11 +28,35 @@ const router = createBrowserRouter([
       },
       {
         path: "/my-transactions",
-        Component: MyTransactions,
+        element: (
+          <PrivateRoute>
+            <MyTransactions></MyTransactions>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/add-transaction",
-        Component: AddTransaction,
+        element: (
+          <PrivateRoute>
+            <AddTransaction></AddTransaction>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/transaction/:id",
+        element: (
+          <PrivateRoute>
+            <TransactionDetails></TransactionDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-transaction/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateTransaction></UpdateTransaction>
+          </PrivateRoute>
+        ),
       },
     ],
   },
