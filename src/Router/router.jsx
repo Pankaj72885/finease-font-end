@@ -6,6 +6,7 @@ import PrivateRoute from "@/components/Layout/PrivateRoute";
 import { createBrowserRouter } from "react-router";
 import Root from "./Root";
 import UpdateTransaction from "@/Pages/UpdateTransaction";
+import Reports from "@/Pages/Reports";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <UpdateTransaction></UpdateTransaction>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/reports",
+        element: (
+          <PrivateRoute>
+            <Reports></Reports>
           </PrivateRoute>
         ),
       },
