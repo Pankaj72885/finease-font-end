@@ -111,7 +111,7 @@ export function Component() {
         <div className="text-center">
           <div className="flex justify-center">
             <div className="w-12 h-12 bg-primary-600 rounded-md flex items-center justify-center">
-              <span className="text-white font-bold text-xl">F</span>
+              <span className="text-white font-bold text-xl">FinEase</span>
             </div>
           </div>
           <h2 className="mt-6 text-3xl font-extrabold text-foreground">

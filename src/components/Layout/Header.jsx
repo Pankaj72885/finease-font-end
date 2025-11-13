@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { useAuth } from "@/Contexts/AuthContext";
 import { useTheme } from "@/Contexts/ThemeContext";
 import { LogOut, Menu, Moon, Sun, User, X } from "lucide-react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,7 +27,9 @@ const Header = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-primary-600 rounded-md flex items-center justify-center">
-                <span className="text-black dark:text-white text-2xl font-bold">F</span>
+                <span className="text-black dark:text-white text-2xl font-bold">
+                  F
+                </span>
               </div>
               <span className="text-xl font-bold">FinEase</span>
             </Link>
@@ -88,9 +90,9 @@ const Header = () => {
                   )}
                 </button>
 
-                <div className="absolute right-0 mt-2 w-48 bg-card border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
+                <div className="absolute right-0 mt-2 bg-card border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 w-fit">
                   <div className="p-2">
-                    <div className="px-4 py-2 text-sm text-muted-foreground border-b">
+                    <div className="px-4 py-2 text-sm text-muted-foreground w-fit border-b">
                       <div>{currentUser.displayName}</div>
                       <div>{currentUser.email}</div>
                     </div>
