@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-import { Eye, EyeOff, Mail, Lock, Chrome } from "lucide-react";
+import { Chrome, Eye, EyeOff, Lock, Mail } from "lucide-react";
 
-import toast from "react-hot-toast";
-import { useAuth } from "@/Contexts/AuthContext";
-import { Link, useLocation, useNavigate } from "react-router";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
+import { Input } from "@/components/ui/input";
+import { useAuth } from "@/Contexts/AuthContext";
+import toast from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router";
 
 export function Component() {
   const [formData, setFormData] = useState({
@@ -69,7 +68,9 @@ export function Component() {
         <div className="text-center">
           <div className="flex justify-center">
             <div className="w-12 h-12 bg-primary-600 rounded-md flex items-center justify-center">
-              <span className="text-black dark:text-white text-2xl font-bold">FinEase</span>
+              <span className="text-black dark:text-white text-2xl font-bold">
+                FinEase
+              </span>
             </div>
           </div>
           <h2 className="mt-6 text-3xl font-extrabold text-foreground">
@@ -154,6 +155,17 @@ export function Component() {
             </div>
           </form>
 
+          <div className="mt-2 text-sm text-muted-foreground flex justify-end">
+            <Link
+              to="/forgot-password"
+              className="font-medium text-primary-600 hover:text-primary-500"
+            >
+              <Button variant="link" className="cursor-pointer">
+                Forgot Password
+              </Button>
+            </Link>
+          </div>
+
           <div className="mt-6">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
@@ -183,6 +195,6 @@ export function Component() {
       </div>
     </div>
   );
-};
+}
 
 Component.displayName = "LoginPage";

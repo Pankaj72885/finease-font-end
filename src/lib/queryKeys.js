@@ -2,6 +2,7 @@
 export const queryKeys = {
   // Auth
   auth: ["auth"],
+  resetCode: (code) => ["auth", "resetCode", code],
 
   // Transactions
   transactions: ["transactions"],

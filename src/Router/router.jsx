@@ -29,6 +29,10 @@ const router = createBrowserRouter([
         lazy: () => import("@/Pages/Login"),
       },
       {
+        path: "/forgot-password",
+        lazy: () => import("@/Pages/ForgotPassword"),
+      },
+      {
         path: "/my-transactions",
         element: (
           <PrivateRoute>

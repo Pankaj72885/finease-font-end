@@ -76,6 +76,27 @@ export const authAPI = {
       method: "POST",
       body: { idToken },
     }),
+    
+  // Forgot Password
+  forgotPassword: (email) =>
+    apiRequest("/auth/forgot-password", {
+      method: "POST",
+      body: { email },
+    }),
+
+  // Verify Reset Code
+  verifyResetCode: (oobCode) =>
+    apiRequest("/auth/verify-reset-code", {
+      method: "POST",
+      body: { oobCode },
+    }),
+
+  // Reset Password
+  resetPassword: (oobCode, newPassword) =>
+    apiRequest("/auth/reset-password", {
+      method: "POST",
+      body: { oobCode, newPassword },
+    }),
 };
 
 // Transaction API
